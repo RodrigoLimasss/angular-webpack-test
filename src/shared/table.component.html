@@ -1,0 +1,87 @@
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" >
+      <img src="./src/imgs/slider_loading.gif" width="100px" />
+  </div>
+</div>
+
+
+<div class="col-md-12">
+    <div class="col-md-2">
+        <label>Merchant Name
+        <input *ngIf="config.filtering" class="form-control" placeholder="Filter by merchant name" [ngTableFiltering]="config.filtering"/>
+        </label>
+
+        <label>Stone Code
+        <input *ngIf="config.filtering" class="form-control" placeholder="Filter by stone code" [(ngModel)]="config.filtering.stoneCode"/>
+        </label>
+    </div>
+
+    <div class="checkbox col-md-2 pdg-top-50">
+        <label>
+        <input type="checkbox" [(ngModel)]="config.filtering.groups.High">
+            High
+        </label>
+        <label>
+        <input type="checkbox" [(ngModel)]="config.filtering.groups.Medium">
+            Medium
+        </label>
+        <label>
+        <input type="checkbox" [(ngModel)]="config.filtering.groups.Small">
+            Small
+        </label>
+        <label>
+        <input type="checkbox" [(ngModel)]="config.filtering.groups.Micro">
+            Micro
+        </label>
+    </div>
+
+    <div class="col-md-2">
+        <label> from
+            <input type="text" [(ngModel)]="config.filtering.initDate" ng-model="format" class="form-control" placeholder="yyyy/mm/dd hh:mm:ss">
+        </label>
+        <label>to
+            <input type="text" [(ngModel)]="config.filtering.endDate" ng-model="format" class="form-control" placeholder="yyyy/mm/dd hh:mm:ss">
+        </label>
+    </div>
+
+    <div class="form-group col-md-1 pdg-top-20">
+        <button type="button" class='btn btn-success' (click)='onClickSearch(config)'>Search</button>
+        <br><br>
+        <button type="button" class='btn btn-danger' (click)='onClickClear()' style="width: 70px;">Clear</button>
+    </div>
+</div>
+
+<div style="clear: both; margin-bottom: 1%;"><p></p></div>
+<div class="load-msg"></div>
+
+<pagination *ngIf="config.paging"
+            class="pagination-sm"
+            [(ngModel)]="page"
+            [totalItems]="length"
+            [itemsPerPage]="itemsPerPage"
+            [maxSize]="maxSize"
+            [boundaryLinks]="true"
+            [rotate]="false"
+            (pageChanged)="changePage(config, $event)"
+            (numPages)="numPages = $event">
+</pagination>
+
+<ng-table [config]="config.sorting"
+           (tableChanged)="onChangeTable(config)"
+           [rows]="rows" [columns]="columns">
+</ng-table>
+
+<pagination *ngIf="config.paging"
+            class="pagination-sm"
+            [(ngModel)]="page"
+            [totalItems]="length"
+            [itemsPerPage]="itemsPerPage"
+            [maxSize]="maxSize"
+            [boundaryLinks]="true"
+            [rotate]="false"
+            (pageChanged)="changePage(config, $event)"
+            (numPages)="numPages = $event">
+</pagination>
+
+<pre *ngIf="config.paging" class="card card-block card-header">Page: {{page}} / {{numPages}} - Total: {{length}}</pre>

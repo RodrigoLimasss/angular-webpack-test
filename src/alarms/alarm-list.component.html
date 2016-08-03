@@ -1,0 +1,24 @@
+<style>
+    .panel-primary {
+        border-color: #35b733;
+    }
+    .panel-primary > .panel-heading { 
+        background-color: #35b733;
+        border-color: #35b733;
+    }
+</style>
+
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+
+    <!-- Filter the Alarms   -->
+    <div class='panel-body'>
+        <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+
+        <div class='table-responsive'>
+            <ng2-table-alarm></ng2-table-alarm>           
+        </div>
+    </div>
+</div>

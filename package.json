@@ -2,8 +2,9 @@
   "name": "webpack-test",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack --progress",
-    "build:prod": "cross-env APP_ENVIRONMENT=production webpack -p --progress",
+    "build": "webpack --progress --port 3000",
+    "build:prod": "cross-env APP_ENVIRONMENT=prod webpack -p --progress --port 3000",
+    "build:pre": "cross-env APP_ENVIRONMENT=pre webpack -p --progress --port 3000",
     "postinstall": "typings install",
     "serve": "webpack-dev-server --inline --progress --port 3000"
   },
@@ -19,13 +20,18 @@
     "@angular/router": "3.0.0-beta.1",
     "@angular/router-deprecated": "2.0.0-rc.2",
     "@angular/upgrade": "2.0.0-rc.4",
-    "systemjs": "0.19.27",
+    "angular2-in-memory-web-api": "0.0.14",
+    "bootstrap": "^3.3.6",
     "core-js": "^2.4.0",
+    "ng2-bootstrap": "^1.0.24",
+    "ng2-table": "^1.0.2",
     "reflect-metadata": "^0.1.3",
     "rxjs": "5.0.0-beta.6",
+    "systemjs": "0.19.27",
     "zone.js": "^0.6.12",
-    "angular2-in-memory-web-api": "0.0.14",
-    "bootstrap": "^3.3.6"
+    "cross-env": "1.0.8",
+    "webpack": "1.13.1",
+    "webpack-dev-server": "1.14.1"
   },
   "devDependencies": {
     "cross-env": "1.0.8",
